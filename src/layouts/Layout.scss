@@ -1,0 +1,11 @@
+.app-layout {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    &__container {
+        display: flex;
+        width: inherit;
+        height: inherit;
+    }
+}

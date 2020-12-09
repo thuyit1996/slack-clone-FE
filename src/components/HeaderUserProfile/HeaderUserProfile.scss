@@ -1,0 +1,29 @@
+.header-user-profile {
+    color: #fff;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &__avatar {
+        background: green;
+        width: 30px;
+        height: 30px;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        &__status {
+            width: 15px;
+            height: 15px;
+            background: #2BAC76;
+            bottom: -3px;
+            right: -5px;
+            border: 3.5px solid #350D36;
+            border-radius: 50%;
+            position: absolute;    
+        }
+    }
+}

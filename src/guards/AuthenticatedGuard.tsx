@@ -20,9 +20,9 @@ function AuthenticatedGuard(props: Props) {
     <Route
       {...rest}
       render={props => {
-        if (!isAuthenticated && !localStorage.getItem("token")) {
-          return <Redirect to="/login" />
-        }
+        // if (!isAuthenticated && !localStorage.getItem("token")) {
+        //   return <Redirect to="/login" />
+        // }
         return <Component {...props} />
       }}
     />
