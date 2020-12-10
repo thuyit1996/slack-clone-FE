@@ -4,11 +4,15 @@ import { loginReducer } from "@/pages/Login/Login.reducer"
 import { ProductListReducer } from "@/pages/Product/ProductList/ProductList.reducer"
 import { productItemReducer } from "@/pages/Product/ProductItem/ProductItem.reducer"
 
-const rootReducer = combineReducers({
+export const appReducer = combineReducers({
   app: AppReducer,
   login: loginReducer,
   productList: ProductListReducer,
   productItem: productItemReducer
 })
 
-export default rootReducer
+export const rootReducer = (state: any, action: any): any => {
+  return appReducer(state, action)
+}
+
+export type RootState = ReturnType<typeof rootReducer>
