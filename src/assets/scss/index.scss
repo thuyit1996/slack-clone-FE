@@ -15,50 +15,59 @@
   src: url(../fonts/OpenSans-Light.ttf);
   font-weight: 300;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-LightItalic.ttf);
   font-weight: 300;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-Regular.ttf);
   font-weight: 400;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-Italic.ttf);
   font-weight: 400;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-SemiBold.ttf);
   font-weight: 600;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-SemiBoldItalic.ttf);
   font-weight: 600;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-Bold.ttf);
   font-weight: 700;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-BoldItalic.ttf);
   font-weight: 700;
   font-style: italic;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-ExtraBold.ttf);
   font-weight: 800;
 }
+
 @font-face {
   font-family: 'Open Sans';
   src: url(../fonts/OpenSans-ExtraBoldItalic.ttf);
@@ -69,6 +78,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
+
+  ul,
+  li {
+    padding: 0;
+    list-style-type: none;
+  }
 }
 
 // Base css
@@ -83,3 +98,11 @@ body {
 @import '../../components/SideNav/SideNav.scss';
 @import '../../components/HeaderSearchBar/header-search-bar.scss';
 @import '../../components/HeaderUserProfile/HeaderUserProfile.scss';
+
+@import '../../components/HomePage/HomePageHeader/index.scss';
+@import '../../components/HomePage/HomePageTextEditor/index.scss';
+@import '../../components/HomePage/HomePageContent/index.scss';
+@import '../../components/PostComponent/index.scss';
+
+// Page
+@import '../../components/HomePage/HomePage.scss';

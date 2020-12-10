@@ -1,0 +1,104 @@
+.home-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 7px 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+
+  &__title {
+    &__channel-name {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+
+      &::before {
+        content: '#';
+      }
+
+      .channel-name {
+        margin-right: 10px;
+      }
+    }
+
+    &__option {
+      font-size: 14px;
+    }
+  }
+
+  &__group-user {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+
+    &__list-user {
+      right: 50px;
+      position: relative;
+
+      .header-user-profile {
+        visibility: hidden;
+
+        &:nth-child(1) {
+          visibility: visible;
+          left: -40px;
+          z-index: 3;
+        }
+
+        &:nth-child(2) {
+          left: -20px;
+          visibility: visible;
+          z-index: 2;
+
+          .header-user-profile__avatar {
+            background: red;
+          }
+        }
+
+        &:nth-child(3) {
+          z-index: 1;
+          left: 0;
+          visibility: visible;
+
+          .header-user-profile__avatar {
+            background: purple;
+          }
+        }
+
+        &__avatar__status {
+          display: none;
+        }
+      }
+    }
+
+    &__tool {
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        .tool-icon {
+          background: #dfdbdb;
+        }
+      }
+
+      .tool-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        width: 35px;
+        height: 35px;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+
+        &:first-child {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
+}
