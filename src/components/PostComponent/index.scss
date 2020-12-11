@@ -1,0 +1,13 @@
+.post-component {
+    &__avatar {
+        position: relative;
+
+        .header-user-profile {
+            left: 0;
+
+            &__avatar__status {
+                display: none;
+            }
+        }
+    }
+}
