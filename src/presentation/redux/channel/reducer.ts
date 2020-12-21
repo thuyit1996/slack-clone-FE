@@ -1,11 +1,17 @@
 import * as channelAction from "./action"
 
-const initialState = {}
+const initialState = {
+  channel: []
+}
 
-export default function ChannelReducer(state = initialState, action) {
-  switch (action.type) {
+export const ChannelReducer = (state = initialState, action) => {
+  const { payload, type } = action
+  switch (type) {
     case channelAction.GET_ALL_CHANNEL_SUCCESS:
-      return state
+      return {
+        ...state,
+        channel: payload.data
+      }
     default:
       return state
   }

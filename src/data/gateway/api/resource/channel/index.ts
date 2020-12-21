@@ -2,9 +2,7 @@ import Type from "../../type"
 import { getApiController } from ".."
 import { IResource } from "../../../../../shared/interfaces/common/resource"
 
-const getAllChannel = (storeView?: string): IResource => ({
+export const getAllChannel = (storeView?: string): IResource => ({
   Type: Type.Public,
-  Path: `${getApiController(storeView)}/sign_in`
+  Path: `${getApiController(storeView)}/channel/get-all-channel`
 })
-
-export default { getAllChannel }

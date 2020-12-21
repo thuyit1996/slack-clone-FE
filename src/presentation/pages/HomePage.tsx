@@ -1,12 +1,26 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
 import MainLayout from "@/presentation/layouts/MainLayout"
 import HomePageHeader from "@/presentation/components/HomePage/HomePageHeader/HomePageHeader"
 import HomePageContent from "@/presentation/components/HomePage/HomePageContent/HomePageContent"
 import HomePageSideExtend from "@/presentation/components/HomePage/HomePageSideExtend/HomePageSideExtend"
 import HomePageTextEditor from "@/presentation/components/HomePage/HomePageTextEditor/HomePageTextEditor"
+import { getAllChannel } from "@/presentation/redux/channel/action"
 
-export default function Home() {
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = {
+  getAllChannel
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps)
+
+const HomePage = ({ getAllChannel }) => {
   const [toggleExtendSide, setToggleExtendSide] = useState(false);
+
+  useEffect(() => {
+    getAllChannel()
+  }, [getAllChannel])
 
   return (
     <MainLayout>
@@ -23,3 +37,6 @@ export default function Home() {
     </MainLayout>
   )
 }
+
+
+export default connector(HomePage)

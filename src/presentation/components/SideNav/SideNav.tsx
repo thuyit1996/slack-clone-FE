@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { BiMessageEdit, BiMessageSquareDetail, BiDotsVerticalRounded } from 'react-icons/bi'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { TiMessages } from 'react-icons/ti'
 import { VscTriangleRight } from 'react-icons/vsc'
 import { connect, ConnectedProps } from "react-redux"
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
+  channelList: state.ChannelReducer.channel
 })
 
 const mapDispatchToProps = {}
@@ -14,9 +15,15 @@ const connector = connect(mapStateToProps, mapDispatchToProps)
 
 interface Props extends ConnectedProps<typeof connector> { }
 
-function SideNav(props: Props) {
+function SideNav({ channelList }: Props) {
   const [toggleChannels, setToggleChannels] = useState(false);
   const [toggleDirectMessage, settoggleDirectMessage] = useState(false);
+
+  const renderChannel = useMemo(() => {
+    return channelList.map(item => {
+      return <li className="channels-content-item" key={item._id}>{item.name}</li>
+    })
+  }, [channelList])
 
   return (
     <div className="side-nav">
@@ -71,9 +78,7 @@ function SideNav(props: Props) {
           </div>
           <div className="channels-content">
             <ul className="channels-content__list-item">
-              <li className="channels-content-item">genneral</li>
-              <li className="channels-content-item">random</li>
-              <li className="channels-content-item">tech</li>
+              {renderChannel}
             </ul>
           </div>
         </div>
