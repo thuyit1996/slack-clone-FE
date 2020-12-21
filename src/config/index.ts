@@ -1,6 +1,6 @@
-import { IRemoteConfig } from '../shared/interfaces/common';
+import { IRemoteConfig } from "../shared/interfaces/common"
 
-let configs: IRemoteConfig | undefined;
+let configs: IRemoteConfig | undefined
 
 export const initConfig = (): Promise<IRemoteConfig> => {
   return new Promise((resolve, reject) => {
@@ -12,20 +12,21 @@ export const initConfig = (): Promise<IRemoteConfig> => {
      */
     const config: IRemoteConfig = {
       endpoint: process.env.REACT_APP_API_ENDPOINT,
-      domain: 'http://localhost:8000',
-      accessToken: '7645dbab3206527a2d8120e1736fi4u44c',
-      googleApiKey: 'AIzaSyDe2Kk6i-VPLHmGq-0_RH7JYk1QlaxSYMsI',
-      sitecoreApiKey: '7A3E0468-E733-4F81-AABE-2BC0E797E5E0',
-    };
-    configs = config;
-    if (configs) {
-      resolve(config);
-    } else {
-      reject();
+      domain: "http://localhost:8000",
+      accessToken:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYzMzMTQ3Y2ZjMTA5MTI5NGE3M2UyYSIsImVtYWlsIjoidGh1eUBnbWFpbC5jb20iLCJmdWxsTmFtZSI6Ik5ndXllbiBWYW4gVHVhbiIsInRleHRTZWNyZXQiOiJQZEJvTnJtQ0ZjZ2ZpVEJLamRQTlZJWjQiLCJpYXQiOjE2MDg1MzM0NTUsImV4cCI6MTYxMDc0Njc4ODQ1NX0.RkKfn8lghtGZUhSD-FEa6N1ccWKZl-iiIuOQopIzRJc",
+      googleApiKey: "AIzaSyDe2Kk6i-VPLHmGq-0_RH7JYk1QlaxSYMsI",
+      sitecoreApiKey: "7A3E0468-E733-4F81-AABE-2BC0E797E5E0"
     }
-  });
-};
+    configs = config
+    if (configs) {
+      resolve(config)
+    } else {
+      reject()
+    }
+  })
+}
 
 export const getBaseConfig = (): IRemoteConfig | undefined => {
-  return configs;
-};
+  return configs
+}

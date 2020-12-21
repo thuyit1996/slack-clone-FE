@@ -1,0 +1,20 @@
+@import "./assets/scss/index.scss";
+
+
+// Layout
+@import './presentation/layouts/Layout.scss';
+
+// Component
+@import './presentation/components/Header/header.scss';
+@import './presentation/components/SideNav/SideNav.scss';
+@import './presentation/components/HeaderSearchBar/header-search-bar.scss';
+@import './presentation/components/HeaderUserProfile/HeaderUserProfile.scss';
+
+@import './presentation/components/HomePage/HomePageHeader/index.scss';
+@import './presentation/components/HomePage/HomePageTextEditor/index.scss';
+@import './presentation/components/HomePage/HomePageContent/index.scss';
+@import './presentation/components/PostComponent/index.scss';
+@import './presentation/components/Loading/Loaing.scss';
+
+// Page
+@import './presentation/components/HomePage/HomePage.scss';

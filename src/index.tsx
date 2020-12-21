@@ -1,10 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "@/assets/scss/index.scss"
-import App from "./App/App"
 import * as serviceWorker from "./serviceWorker"
 import { Provider } from "react-redux"
-import { configureStore } from "./redux/store"
+import { configureStore } from "./presentation/redux/store"
+
+import App from "./presentation/routes/routes"
+import "./app.scss"
 
 
 const store = configureStore();
