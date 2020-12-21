@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"
-import ChannelReducer from "../channel/reducer"
+import { ChannelReducer } from "../channel/reducer"
 
 export const appReducer = combineReducers({
   ChannelReducer

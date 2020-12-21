@@ -1,5 +1,5 @@
 import Customer from "./customer"
-import Channel from "./channel"
+import * as Channel from "./channel"
 
 // export const getApiController = (storeView = 'jp') => storeView ? `rest/V1` : 'rest/V1';
 export const getApiController = (storeView = "th"): string =>
