@@ -1,95 +1,114 @@
 .side-nav {
-    min-width: 300px;
-    height: 100%;
-    background: $bg-color-side-bar;
-    color: #fff;
+  min-width: 300px;
+  height: 100%;
+  background: $bg-color-side-bar;
+  color: #fff;
 
-    &__header {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-top: 1px solid #522653;
+    border-bottom: 1px solid #522653;
+
+    &__drop-box {
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    &__new-message {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    &__channels {
+      position: relative;
+    }
+
+    .side-nav-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #bcabbc;
+      font-weight: 600;
+      cursor: pointer;
+
+      &__title {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        padding: 10px 25px;
-        border-top: 1px solid #522653;
-        border-bottom: 1px solid #522653;
+        padding: 10px 15px;
 
-        &__drop-box {
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
+        &:hover {
+          background: $bg-color;
+          color: #fff;
         }
 
-        &__new-message {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+        &.channel-group:hover .side-nav-item__plus {
+          opacity: 1;
         }
+      }
+
+      &__plus {
+        position: absolute;
+        right: 20px;
+        opacity: 0;
+        transition: .3s;
+				padding: 0 3px;
+				color: #eeeeee;
+				border: 1px solid #4e434f;
+				background: #4e434f;
+      }
+
+      &__icon {
+        width: 30px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s ease-in-out;
+      }
+
+      .channels-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.2s ease-in-out;
+
+        &__list-item {
+          .channels-content-item {
+            padding: 5px 40px;
+
+            &::before {
+              content: "#";
+              margin-right: 10px;
+            }
+
+            &:hover {
+              background: $bg-color;
+              color: #fff;
+            }
+          }
+        }
+      }
     }
 
-    &__content {
-        .side-nav-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            color: #bcabbc;
-            font-weight: 600;
-            cursor: pointer;
+    .side-nav-active {
+      .channels-content {
+        max-height: 1000px;
+      }
 
-            &__title {
-                display: flex;
-                align-items: center;
-                padding: 10px 15px;
-
-                &:hover {
-                    background: $bg-color;
-                    color: #fff;
-                }
-            }
-
-            &__icon {
-                width: 30px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: 0.2s ease-in-out;
-            }
-
-            .channels-content {
-                max-height: 0;
-                overflow: hidden;
-                transition: 0.2s ease-in-out;
-
-                &__list-item {
-                    .channels-content-item {
-                        padding: 5px 40px;
-
-                        &::before {
-                            content: "#";
-                            margin-right: 10px;
-                        }
-
-                        &:hover {
-                            background: $bg-color;
-                            color: #fff;
-                        }
-                    }
-                }
-            }
-        }
-
-        .side-nav-active {
-            .channels-content {
-                max-height: 1000px;
-            }
-
-            .side-nav-item__icon {
-                transform: rotate(90deg);
-            }
-        }
+      .side-nav-item__icon {
+        transform: rotate(90deg);
+      }
     }
+  }
 }

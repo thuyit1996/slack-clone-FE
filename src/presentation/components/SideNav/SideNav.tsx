@@ -1,10 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react"
-import { BiMessageEdit, BiMessageSquareDetail, BiDotsVerticalRounded } from 'react-icons/bi'
-import { MdKeyboardArrowDown } from 'react-icons/md'
-import { TiMessages } from 'react-icons/ti'
-import { VscTriangleRight } from 'react-icons/vsc'
+import React, { useMemo, useState } from "react"
+import {
+  BiMessageEdit,
+  BiMessageSquareDetail,
+  BiDotsVerticalRounded
+} from "react-icons/bi"
+import { MdKeyboardArrowDown } from "react-icons/md"
+import { TiMessages } from "react-icons/ti"
+import { VscTriangleRight, VscAdd } from "react-icons/vsc"
 import { connect, ConnectedProps } from "react-redux"
-
+import AddChannelModal from "../AddChannelModal/AddChannelModal"
+import CommonModal from "../Modal/CommonModal"
 const mapStateToProps = (state: any) => ({
   channelList: state.ChannelReducer.channel
 })
@@ -13,17 +18,25 @@ const mapDispatchToProps = {}
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
 
-interface Props extends ConnectedProps<typeof connector> { }
+interface Props extends ConnectedProps<typeof connector> {}
 
 function SideNav({ channelList }: Props) {
-  const [toggleChannels, setToggleChannels] = useState(false);
-  const [toggleDirectMessage, settoggleDirectMessage] = useState(false);
-
+  const [toggleChannels, setToggleChannels] = useState(false)
+  const [toggleDirectMessage, setToggleDirectMessage] = useState(false)
+  const [isOpenAddChannel, setIsOpenAddChannel] = useState(false)
   const renderChannel = useMemo(() => {
     return channelList.map(item => {
-      return <li className="channels-content-item" key={item._id}>{item.name}</li>
+      return (
+        <li className="channels-content-item" key={item._id}>
+          {item.name}
+        </li>
+      )
     })
   }, [channelList])
+
+  const createChannel = () => {
+    setIsOpenAddChannel(true)
+  }
 
   return (
     <div className="side-nav">
@@ -69,21 +82,46 @@ function SideNav({ channelList }: Props) {
             <span>More</span>
           </div>
         </div>
-        <div className={`side-nav__content__channels side-nav-item ${toggleChannels ? 'side-nav-active' : ''}`}>
-          <div className="side-nav-item__title" onClick={() => setToggleChannels(!toggleChannels)}>
-            <div className="side-nav-item__icon">
+        <div
+          className={`side-nav__content__channels side-nav-item ${
+            toggleChannels ? "side-nav-active" : ""
+          }`}
+        >
+          <div className="side-nav-item__title channel-group">
+            <div
+              className="side-nav-item__icon"
+              onClick={() => setToggleChannels(!toggleChannels)}
+            >
               <VscTriangleRight />
             </div>
             <span>Channels</span>
+            <div className="side-nav-item__plus" onClick={createChannel}>
+              <VscAdd />
+            </div>
+            <CommonModal
+              title="Create a channel"
+              centered={true}
+              onCancel={val => setIsOpenAddChannel(val)}
+              onOk={val => setIsOpenAddChannel(val)}
+              visible={isOpenAddChannel}
+              width={550}
+            >
+              <AddChannelModal />
+            </CommonModal>
           </div>
           <div className="channels-content">
-            <ul className="channels-content__list-item">
-              {renderChannel}
-            </ul>
+            <ul className="channels-content__list-item">{renderChannel}</ul>
           </div>
         </div>
-        <div className={`side-nav__content__direct-message side-nav-item ${toggleDirectMessage ? 'side-nav-active' : ''}`}>
-          <div className="side-nav-item__title" onClick={() => settoggleDirectMessage(!toggleDirectMessage)}>
+        <div
+          className={`side-nav__content__direct-message side-nav-item ${
+            toggleDirectMessage ? "side-nav-active" : ""
+          }`}
+        >
+          <div
+            className="side-nav-item__title"
+            onClick={() => setToggleDirectMessage(!toggleDirectMessage)}
+          >
             <div className="side-nav-item__icon">
               <VscTriangleRight />
             </div>
@@ -91,7 +129,7 @@ function SideNav({ channelList }: Props) {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }
 

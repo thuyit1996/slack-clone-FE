@@ -5,17 +5,15 @@ import { Provider } from "react-redux"
 import { configureStore } from "./presentation/redux/store"
 
 import App from "./presentation/routes/routes"
+import "antd/dist/antd.css"
 import "./app.scss"
 
-
-const store = configureStore();
+const store = configureStore()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById("root")
 )
 
