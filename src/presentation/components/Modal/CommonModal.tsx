@@ -1,24 +1,26 @@
 import React from "react"
-import { Modal } from "antd"
+import { Modal, Button } from "antd"
 import "./CommonModal.scss"
 interface IProps {
   title: string
   centered?: boolean
   visible: boolean
-  onOk: (isOpen: boolean) => void
   onCancel: (isOpen: boolean) => void
+  onOk: (isOpen: boolean) => void
   children?: any
   width?: number
+  isDisableButton?: boolean
 }
 
 const CommonModal: React.FC<IProps> = ({
   title,
   centered,
   visible,
-  onOk,
   onCancel,
+  onOk,
   children,
-  width
+  width,
+  isDisableButton
 }) => {
   return (
     <Modal
@@ -26,8 +28,16 @@ const CommonModal: React.FC<IProps> = ({
       centered={centered}
       visible={visible}
       width={width}
-      onOk={() => onOk(false)}
       onCancel={() => onCancel(false)}
+      onOk={() => onOk(false)}
+      footer={[
+        <Button
+          className={`button-add ${isDisableButton ? "disabled" : "active"}`}
+          disabled={isDisableButton}
+        >
+          Create
+        </Button>
+      ]}
     >
       {children}
     </Modal>

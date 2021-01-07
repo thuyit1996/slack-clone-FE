@@ -1,0 +1,44 @@
+.add-channel-modal {
+    &__form-control {
+        margin-top: 25px;
+
+    }
+
+    .add-description__content {
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    &__make-private {
+        margin-top: 20px;
+
+        &__left {
+            width: 70%;
+            float: left;
+
+            .title {
+                font-weight: 600;
+                margin-bottom: 0;
+            }
+        }
+
+        &__right {
+            width: 30%;
+            float: left;
+            display: flex;
+            flex-direction: row-reverse;
+
+            .switch-icon {
+                margin-top: 20px;
+            }
+        }
+
+        .clear-fix {
+            clear: both;
+        }
+    }
+
+    .ant-switch-checked {
+        background-color: #007a5a;
+    }
+}

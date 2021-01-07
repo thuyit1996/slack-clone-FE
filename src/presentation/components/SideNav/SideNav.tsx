@@ -100,7 +100,7 @@ function SideNav({ channelList }: Props) {
             </div>
             <CommonModal
               title="Create a channel"
-              centered={true}
+              centered
               onCancel={val => setIsOpenAddChannel(val)}
               onOk={val => setIsOpenAddChannel(val)}
               visible={isOpenAddChannel}
