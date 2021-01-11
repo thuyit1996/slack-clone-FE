@@ -38,6 +38,7 @@ export default function HomePageContent() {
   let Bmap: any = useRef(null)
 
   const [mapConfig, setmapConfig] = useState({})
+  const [isAllowGeo, setisAllowGeo] = useState(false)
   const [hoveringMarker, sethoveringMarker] = useState<any>(null)
   const [selectedMarker, setselectedMarker] = useState<any>(null)
   const [infoWindowByMarker, setinfoWindowByMarker] = useState<any>({
@@ -46,6 +47,21 @@ export default function HomePageContent() {
     Lat: null,
     Long: null,
   })
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        console.log('IN');
+        
+        setisAllowGeo(true)
+      },
+      function (error) {
+        console.log('OUT');
+        setisAllowGeo(false)
+      }
+    );
+
+  }, [navigator.geolocation])
 
   const handleClick = ({ index, Lat, Long }) => {
     setselectedMarker(index)
@@ -176,7 +192,7 @@ export default function HomePageContent() {
 
       {/* <PostComponent /> */}
       {listItem}
-      <div style={{ background: '#444', height: '500px' }}>
+      <div style={{ background: '#444', height: '500px', position: 'relative' }}>
         <AsyncMap
           mapUrl={`http://api.map.baidu.com/api?v=3.0&ak=${'GTrnXa5hwXGwgQnTBG28SHBubErMKm3f'}`}
           loadingElement={<div>Loading.....</div>}
@@ -189,27 +205,30 @@ export default function HomePageContent() {
           <MapTypeControl />
           <OverviewMapControl />
           <NavigationControl />
-          <GeolocationControl
-            onLocationSuccess={(e) => {
-              console.log(e);
-            }}
-            onlocationError={(e) => {
-              console.log(e, 'Error');
-            }}
-          />
+          {isAllowGeo && <GeolocationControl />}
           {listMarker}
           {infoWindow}
         </AsyncMap>
-        <div onClick={() => {
-          navigator.geolocation.getCurrentPosition(
-            function (position) {
-              console.log(position);
-            },
-            function (error) {
-              console.error("Error Code = " + error.code + " - " + error.message);
-            }
-          );
-        }}>Hello</div>
+        {!isAllowGeo && <div
+          style={{
+            position: "absolute",
+            width: 33,
+            height: 32,
+            background: 'rgb(243, 241, 236)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            bottom: 30,
+            left: 11,
+            padding: 5
+          }}
+          onClick={() => alert('Need to allow get geo?')}>
+          <img
+            src="http://api.map.baidu.com/images/geolocation-control/mobile/default-40x40.png"
+            alt=""
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>}
       </div>
     </div >
   )
