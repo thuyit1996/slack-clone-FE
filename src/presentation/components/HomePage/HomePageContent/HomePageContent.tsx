@@ -47,6 +47,38 @@ export default function HomePageContent() {
     Long: null,
   })
 
+  const handleClick = ({ index, Lat, Long }) => {
+    setselectedMarker(index)
+    sethoveringMarker(index)
+    setinfoWindowByMarker({
+      ...infoWindowByMarker,
+      Lat, Long,
+      isShow: true,
+      isSelected: true
+    })
+    setmapConfig({ center: { lng: Long, lat: Lat }, zoom: 10 })
+  }
+
+  const handleMarkerHover = ({ index, Lat, Long }) => {
+    sethoveringMarker(index)
+    setselectedMarker(null)
+    setinfoWindowByMarker({
+      ...infoWindowByMarker,
+      Lat, Long,
+      isShow: true,
+      isSelected: false
+    })
+  }
+
+  const handleMarkerHoverOut = ({ index, Lat, Long }) => {
+    sethoveringMarker(null)
+    setselectedMarker(null)
+    setinfoWindowByMarker({
+      ...infoWindowByMarker,
+      isShow: false,
+      isSelected: false
+    })
+  }
 
   const listMarker = useMemo(() => {
     return markers.map((item, itemIdx) => {
@@ -76,36 +108,9 @@ export default function HomePageContent() {
               imageSize: { width: 50 * 1.5, height: 50 * 1.5 },
             }}
             animation='drop'
-            onMouseover={() => {
-              sethoveringMarker(itemIdx)
-              setselectedMarker(null)
-              setinfoWindowByMarker({
-                ...infoWindowByMarker,
-                Lat, Long,
-                isShow: true,
-                isSelected: false
-              })
-            }}
-            onMouseout={() => {
-              sethoveringMarker(null)
-              setselectedMarker(null)
-              setinfoWindowByMarker({
-                ...infoWindowByMarker,
-                isShow: false,
-                isSelected: false
-              })
-            }}
-            onClick={() => {
-              setselectedMarker(itemIdx)
-              sethoveringMarker(null)
-              setinfoWindowByMarker({
-                ...infoWindowByMarker,
-                Lat, Long,
-                isShow: true,
-                isSelected: true
-              })
-              setmapConfig({ center: { lng: Long, lat: Lat }, zoom: 10 })
-            }}
+            onMouseover={() => handleMarkerHover({ index: itemIdx, Lat, Long })}
+            onMouseout={() => handleMarkerHoverOut({ index: itemIdx, Lat, Long })}
+            onClick={() => handleClick({ index: itemIdx, Lat, Long })}
           />
         )
       }
@@ -119,36 +124,9 @@ export default function HomePageContent() {
             imageSize: { width: 50, height: 50 },
           }}
           animation='drop'
-          onMouseover={() => {
-            sethoveringMarker(itemIdx)
-            setselectedMarker(null)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              Lat, Long,
-              isShow: true,
-              isSelected: false
-            })
-          }}
-          onMouseout={() => {
-            sethoveringMarker(null)
-            setselectedMarker(null)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              isShow: false,
-              isSelected: false
-            })
-          }}
-          onClick={() => {
-            setselectedMarker(itemIdx)
-            sethoveringMarker(null)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              Lat, Long,
-              isShow: true,
-              isSelected: true
-            })
-            setmapConfig({ center: { lng: Long, lat: Lat }, zoom: 10 })
-          }}
+          onMouseover={() => handleMarkerHover({ index: itemIdx, Lat, Long })}
+          onMouseout={() => handleMarkerHoverOut({ index: itemIdx, Lat, Long })}
+          onClick={() => handleClick({ index: itemIdx, Lat, Long })}
         />
       )
     })
@@ -160,34 +138,9 @@ export default function HomePageContent() {
       return (
         <div
           key={index}
-          onClick={() => {
-            setselectedMarker(index)
-            sethoveringMarker(index)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              Lat, Long,
-              isShow: true,
-              isSelected: true
-            })
-            setmapConfig({ center: { lng: Long, lat: Lat }, zoom: 10 })
-          }}
-          onMouseOver={() => {
-            sethoveringMarker(index)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              Lat, Long,
-              isShow: true,
-              isSelected: false
-            })
-          }}
-          onMouseOut={() => {
-            sethoveringMarker(null)
-            setinfoWindowByMarker({
-              ...infoWindowByMarker,
-              isShow: false,
-              isSelected: false
-            })
-          }}
+          onClick={() => handleClick({ index, Lat, Long })}
+          onMouseOver={() => handleMarkerHover({ index, Lat, Long })}
+          onMouseOut={() => handleMarkerHoverOut({ index, Lat, Long })}
         >{`item` + index}</div>
       )
     })
