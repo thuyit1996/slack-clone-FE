@@ -25,7 +25,8 @@ const HomePage = ({ getAllChannel }) => {
   return (
     <MainLayout>
       <div className={`home-page ${toggleExtendSide ? 'side-extend-active' : ''}`}>
-        <div className="home-page__content" onClick={() => setToggleExtendSide(!toggleExtendSide)}>
+        {/* <div className="home-page__content" onClick={() => setToggleExtendSide(!toggleExtendSide)}> */}
+        <div className="home-page__content" onClick={() => {}}>
           <HomePageHeader />
           <HomePageContent />
           <HomePageTextEditor />
